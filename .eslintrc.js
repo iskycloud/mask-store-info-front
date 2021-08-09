@@ -23,7 +23,7 @@ module.exports = {
     'airbnb',
     'airbnb/hooks',
     'plugin:prettier/recommended',
-    'prettier/react',
+    'prettier',
   ],
   plugins: ['react-hooks'],
   rules: {
@@ -35,7 +35,8 @@ module.exports = {
     ],
     'react/no-array-index-key': 'off',
     'no-nested-ternary': 'off',
-    'no-param-reassign': 'off'
+    'no-param-reassign': 'off',
+    'import/prefer-default-export': 'off'
   },
   settings: {
     react: {

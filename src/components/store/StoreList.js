@@ -67,7 +67,7 @@ const StoreList = () => {
     {
       title: '유형',
       index: 'type',
-      render: record => {
+      render: (record) => {
         const typeName = StoreType[record.type];
         return typeName;
       },
@@ -100,8 +100,9 @@ const StoreList = () => {
     },
     {
       title: '재고',
-      render: record => {
-        const { title, color } = RemainStat[record.remain_stat];
+      render: (record) => {
+        const { remain_stat: remianStatKey } = record;
+        const { title, color } = RemainStat[remianStatKey];
         if (color === 'none') {
           return <Label content={title} />;
         }
@@ -145,12 +146,12 @@ const StoreList = () => {
   const onSearch = () => {
     isLoading(true);
     getStoresByAddr({ address: searchValue })
-      .then(res => {
+      .then((res) => {
         const { data } = res;
         let resBody;
         if (data.stores) {
           resBody = data;
-          resBody.stores.forEach(store => {
+          resBody.stores.forEach((store) => {
             if (
               !store.remain_stat ||
               (store.remain_stat &&
@@ -268,7 +269,7 @@ const StoreList = () => {
               dataSource={result.stores}
               loading={isLoading}
               pagination={tablePaginationConfig}
-              onRow={record => {
+              onRow={(record) => {
                 return {
                   onClick: () => {
                     const { name, lat, lng } = record;
